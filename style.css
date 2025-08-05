@@ -55,6 +55,7 @@ nav ul li a:hover {
   padding: 80px 20px;
   max-width: 900px;
   margin: auto;
+  align-items: center;
 }
 
 .section h2 {
@@ -117,3 +118,62 @@ footer {
   padding: 20px 0;
   margin-top: 40px;
 }
+.home-container .photo img {
+  max-width: 200px; /* kurangi dari 250px ke 200px */
+  width: 100%;       /* agar fleksibel mengikuti container */
+  height: auto;      /* agar tidak gepeng */
+  border-radius: 50%;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  
+}/* Pastikan section home relatif supaya pseudo-element bisa menempel */
+#home {
+  position: relative;
+  overflow: hidden; /* agar pseudo-element tidak meluber */
+}
+
+/* Pseudo-element sebagai background dengan opacity */
+#home::before {
+  content: "";
+  position: absolute;
+  inset: 0; /* top:0; right:0; bottom:0; left:0; */
+  background: url("img/background.jpg") center/cover no-repeat;
+  opacity: 0.2;          /* 10% opacity */
+  pointer-events: none;  /* supaya klik tetap ke elemen di atasnya */
+  z-index: 0;            /* di bawah konten */
+}
+
+/* Pastikan konten berada di atas pseudo-element */
+.home-container {
+  position: relative;
+  z-index: 1;
+}
+.skills-icons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  flex-wrap: nowrap; /* agar menyamping terus */
+  overflow-x: auto;   /* bisa scroll kalau terlalu banyak */
+  padding: 10px 0;
+}
+
+.skill-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 80px;
+  text-align: center;
+}
+
+.skill-item img {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  margin-bottom: 8px;
+  transition: transform 0.3s ease;
+}
+
+.skill-item img:hover {
+  transform: scale(1.1);
+}
+
